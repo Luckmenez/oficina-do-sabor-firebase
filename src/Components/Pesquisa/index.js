@@ -8,9 +8,9 @@ const BarraPesquisa = props => {
         <React.Fragment>
             <div className='pesquisa'>
                 <input id='pesquisaSite' placeholder='Digite sua pesquisa...' type='text' />
-                <button title='Ok' onClick='' type='submit'>
+                <button title='Ok' onClick={() => {}} type='submit'>
                     <Link to='/busca-produto'>
-                        <img src={lupa} />
+                        <img src={lupa} alt='lupa'/>
                     </Link>
                 </button>
             </div>

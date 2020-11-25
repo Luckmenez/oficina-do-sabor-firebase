@@ -1,8 +1,8 @@
 import React from 'react';
-import styles from './styles.css'
+import './styles.css';
 import Menu from '../../Components/Menu';
 import TabCesta from '../../Components/TabCesta';
-import TabItem from '../../Components/TabCesta/TabItem';
+import firebase from '../../database/firebase';
 
 const Cesta = () => {
     return (
@@ -27,8 +27,11 @@ const Cesta = () => {
 }
 
 function Deletar() {
-    if (document.getElementById("tab1") != null) {
-        document.getElementById("tab1").remove();
+  let carrinho = JSON.parse(localStorage.getItem('carrinho'));
+    if (carrinho) {
+        carrinho = [];
+        localStorage.clear('carrinho');
+        window.location.reload();
     }
     else (
         alert('Cesta vazia!')
@@ -36,7 +39,21 @@ function Deletar() {
 }
 
 function Finalizar() {
-    alert('Compra finalizada!')
+    let produtosVendidos = JSON.parse(localStorage.getItem('carrinho'));
+    let usuario          = JSON.parse(localStorage.getItem('usr_secao'));
+    if(produtosVendidos){
+      firebase
+      .collection('vendas')
+      .add({
+        ...usuario,
+        produtosVendidos,
+        data_venda: new Date(),
+        valor_total: Math.ceil(produtosVendidos.reduce((total, produto) => total += (produto.quantidade * produto.valor)/10,0))
+      }).then(() => {
+        alert('compra realizada');
+        Deletar();
+      })
+    }
 }
 
 export default Cesta;

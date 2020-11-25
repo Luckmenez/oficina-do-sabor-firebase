@@ -1,6 +1,6 @@
 import React from 'react';
 import DescProduto from '../../Components/DescProduto/index'
-import styles from './styles.css';
+import './styles.css';
 import Menu from '../../Components/Menu';
 
 const Produto = () => {

@@ -1,14 +1,16 @@
 import React from 'react';
-import styles from './styles.css'
+import './styles.css'
 
-const TabItem = () => {
+const TabItem = ({produto}) => {
     return (
         <table id='tabela'>
+          <tbody>
             <tr>
-                <td>Bolinha de Queijo</td>
+                <td>{produto.titulo}</td>
                 <td>10</td>
-                <td>R$15,00</td>
+                <td>{produto.valor}</td>
             </tr>
+          </tbody>
         </table>
     );
 }

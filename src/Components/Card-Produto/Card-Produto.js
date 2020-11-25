@@ -8,7 +8,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardActionArea from '@material-ui/core/CardActionArea';
-import { Domain } from '@material-ui/icons';
 
 const useStyles = makeStyles({
   root: {
@@ -48,9 +47,10 @@ const useStyles = makeStyles({
   }
 });
 
+
 const CardProduto = (props) => {
+
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <>
@@ -78,11 +78,9 @@ const CardProduto = (props) => {
             </CardContent>
           </CardActionArea>
         </Link>
-        <Link to='/cesta-produto' className={classes.link}>
         <CardActions>
-          <Button size="large" className={classes.button}>Adicionar Ao Carrinho</Button>
+          <Button size="large" onClick={ () => props.onAddProduto(props.titulo, props.valor, props.quantidade)} className={classes.button}>Adicionar Ao Carrinho</Button>
         </CardActions>
-        </Link>
       </Card>
     </>
   );

@@ -1,14 +1,17 @@
 import React from 'react';
-import styles from './styles.css'
+import './styles.css';
 
-const TabTotal = () => {
+const TabTotal = ({arrayProdutos}) => {
+
     return (
         <table id='total'>
+          <tbody>
             <tr>
                 <td>Total</td>
-                <td>20</td>
-                <td>R$30,00</td>
+                <td>{arrayProdutos.reduce((total, produto) => total += produto.quantidade,0)}</td>
+                <td>{Math.ceil(arrayProdutos.reduce((total, produto) => total += (produto.quantidade * produto.valor)/10,0))}</td>
             </tr>
+          </tbody>
         </table>
     );
 }
