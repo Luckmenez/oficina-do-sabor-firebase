@@ -15,10 +15,10 @@ const menu = props => {
                 <div className='faixa-vermelha'>
                     <ul>
                         <li>
-                            <Link to='/'>Produtos</Link>
+                            <Link to='/login'>Produtos</Link>
                         </li>
                         <li>
-                            <Link to='/login' ><img src={login} alt='Entre na sua conta' /></Link>
+                            <Link to='/' ><img src={login} alt='Entre na sua conta' /></Link>
                         </li>
                         <li>
                             <Link to='/cesta-produto' ><img src={carrinhoCompras} alt='Carrinho de compras' /></Link>

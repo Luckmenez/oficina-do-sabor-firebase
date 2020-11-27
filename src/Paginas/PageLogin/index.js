@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useHistory} from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import './styles.css';
 import firebase from '../../database/firebase';
@@ -23,7 +24,7 @@ const valorInicialCadastro = {
 
 
 const PageLogin = props => {
-
+  let history = useHistory();
   const [loginForm, setLoginForm] = useState(valorInicialLogin);
   const [cadastroForm, setCadastroForm] = useState(valorInicialCadastro)
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -56,7 +57,8 @@ const PageLogin = props => {
         snapshot.forEach( doc => {
           console.log(doc.data())
           localStorage.setItem('usr_secao', JSON.stringify([{nome:doc.data().txt_nome,email:doc.data().txt_email, usr_id:doc.id}]))
-          alert('login realizado com sucesso')
+          alert('login realizado com sucesso');
+          history.push('cesta-produto');
         })
       } else {
         alert('login invalido')
@@ -90,7 +92,8 @@ const PageLogin = props => {
     .collection('usuarios')
     .add({
       ...cadastroForm
-    })    
+    })
+    .then(() => history.push("/cesta-produto"))   
   }
 
   return (
